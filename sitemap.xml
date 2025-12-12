@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+    <!-- Homepage -->
+    <url>
+        <loc>https://734183178.github.io/cepin/</loc>
+        <lastmod>2024-12-11</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- Animal Personality Test -->
+    <url>
+        <loc>https://734183178.github.io/cepin/animal/</loc>
+        <lastmod>2024-12-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Dark Personality Test -->
+    <url>
+        <loc>https://734183178.github.io/cepin/Darkpersonality/</loc>
+        <lastmod>2024-12-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Family Dynamics Assessment -->
+    <url>
+        <loc>https://734183178.github.io/cepin/family/</loc>
+        <lastmod>2024-12-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Fruit Personality Test -->
+    <url>
+        <loc>https://734183178.github.io/cepin/fruit/</loc>
+        <lastmod>2024-12-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Love Brain Level Test -->
+    <url>
+        <loc>https://734183178.github.io/cepin/lovestruck/</loc>
+        <lastmod>2024-12-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Psychological Age Test -->
+    <url>
+        <loc>https://734183178.github.io/cepin/Psychologicalage/</loc>
+        <lastmod>2024-12-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Romantic Personality Index -->
+    <url>
+        <loc>https://734183178.github.io/cepin/rpi/</loc>
+        <lastmod>2024-12-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- SCL-90 Mental Health Test -->
+    <url>
+        <loc>https://734183178.github.io/cepin/scl-90zice/</loc>
+        <lastmod>2024-12-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- SRI Professional Assessment -->
+    <url>
+        <loc>https://734183178.github.io/cepin/sri-test/</loc>
+        <lastmod>2024-12-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Talent Assessment -->
+    <url>
+        <loc>https://734183178.github.io/cepin/talent/</loc>
+        <lastmod>2024-12-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+</urlset>
