@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Brain Test | Free 32-Question Romance Attachment Assessment</title>
+    <meta name="description" content="💖 Discover your love brain level in just 5 minutes! Free scientific assessment with 32 questions across 6 dimensions. Understand your romantic attachment patterns. No signup required.">
+    <meta name="keywords" content="love brain test, romance attachment assessment, relationship psychology, love addiction test, romantic dependency quiz, relationship patterns test, free love test">
+    <meta name="author" content="Love Brain Assessment">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mindscreen.xyz/lovestruck/">
+    <meta property="og:title" content="Love Brain Test - Discover Your Romantic Attachment Style">
+    <meta property="og:description" content="💖 Find out your love brain level with our scientific assessment. 32 questions across 6 dimensions. Free instant results!">
+    <meta property="og:image" content="https://mindscreen.xyz/lovestruck/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://mindscreen.xyz/lovestruck/">
+    <meta property="twitter:title" content="Love Brain Test - Discover Your Romantic Attachment Style">
+    <meta property="twitter:description" content="💖 Find out your love brain level with our scientific assessment. Free instant results!">
+    <meta property="twitter:image" content="https://mindscreen.xyz/lovestruck/og-image.jpg">
+
+    <!-- Additional SEO -->
+    <link rel="canonical" href="https://mindscreen.xyz/lovestruck/">
+    <link rel="alternate" hreflang="zh" href="https://mindscreen.xyz/zh/lovestruck/">
+    <link rel="alternate" hreflang="en" href="https://mindscreen.xyz/lovestruck/">
+    <link rel="alternate" hreflang="x-default" href="https://mindscreen.xyz/lovestruck/">
+
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Quiz",
+        "name": "Love Brain Assessment",
+        "description": "Comprehensive romantic attachment assessment evaluating 6 dimensions of love brain tendencies and relationship patterns.",
+        "url": "https://mindscreen.xyz/lovestruck/",
+        "about": "Relationship Psychology",
+        "educationalLevel": "General Public",
+        "learningResourceType": "assessment",
+        "audience": {
+            "@type": "EducationalAudience",
+            "educationalRole": "student"
+        },
+        "timeRequired": "PT5M",
+        "interactionStatistic": {
+            "@type": "InteractionCounter",
+            "interactionType": "https://schema.org/AssessAction",
+            "userInteractionCount": 40000
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Love Brain Assessment"
+        }
+    }
+    </script>
+
+    <!-- Chart.js for radar chart -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 移动端优化样式 */
+        @media (max-width: 768px) {
+            .test-card {
+                padding: 1rem;
+            }
+            
+            .test-title {
+                font-size: 1.25rem;
+                margin-bottom: 0.75rem;
+            }
+            
+            .test-progress-info {
+                text-align: center;
+                margin-bottom: 0.5rem;
+            }
+            
+            .current-question {
+                font-size: 0.85rem;
+                font-weight: normal;
+                color: #999;
+            }
+            
+            .current-question span {
+                color: #FF6B9D;
+                font-size: 0.85rem;
+                font-weight: 600;
+            }
+            
+            .progress-bar {
+                margin-bottom: 1rem;
+            }
+            
+            .question-container {
+                min-height: auto;
+                padding: 0.5rem 0;
+            }
+            
+            .question-text {
+                font-size: 1.3rem;
+                margin-bottom: 1.5rem;
+                line-height: 1.5;
+                font-weight: 500;
+            }
+            
+            .options-container {
+                gap: 0.75rem;
+            }
+            
+            .option-btn {
+                padding: 0.875rem;
+                font-size: 0.95rem;
+            }
+            
+            .option-label {
+                width: 28px;
+                height: 28px;
+                font-size: 0.9rem;
+            }
+            
+            .test-footer {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 介绍页 -->
+        <div id="intro-page" class="page active">
+            <div class="container">
+                <div class="floating-hearts">
+                    <span class="heart">💕</span>
+                    <span class="heart">💗</span>
+                    <span class="heart">💖</span>
+                    <span class="heart">💙</span>
+                </div>
+                
+                <div class="intro-card">
+                    <h1 class="main-title">
+                        <span class="title-icon">💖</span>
+                        Love Brain Level Test
+                        <span class="title-icon">💖</span>
+                    </h1>
+                    <p class="subtitle">Discover Your Love Brain Level</p>
+
+                    <div class="intro-content">
+                        <div class="intro-brief">
+                            <p>📊 This assessment contains <strong>32 questions</strong> evaluating 6 dimensions: dependency, romantic fantasy, breakup resilience, commitment, rational thinking, and self-preservation to assess your love brain level comprehensively.</p>
+                            <p>🎯 Divided into <strong>9 levels</strong>, from "Rationally Clear" to "Peak Love Brain" - let's see which level you belong to!</p>
+                            <p>⚠️ Please answer based on your <strong>true feelings</strong>. Results are for entertainment reference only. Love brain is not a disorder, balance is beautiful!</p>
+                        </div>
+                    </div>
+
+                    <div class="intro-buttons">
+                        <button id="start-btn" class="btn btn-primary">
+                            Start Test 💕
+                        </button>
+
+                        <button id="history-btn" class="btn btn-secondary">
+                            View History 📋
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 测试页 -->
+        <div id="test-page" class="page">
+            <div class="container">
+                <div class="test-card">
+                    <div class="test-header">
+                        <h2 class="test-title">Love Brain Level Test</h2>
+                        <div class="test-progress-info">
+                            <span class="current-question">Question <span id="current-num">1</span></span>
+                            <span class="total-questions">Total 32 Questions</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div id="progress-fill" class="progress-fill"></div>
+                        </div>
+                        <div class="progress-percent" id="progress-percent" style="display: none;">3.1%</div>
+                    </div>
+                    
+                    <div class="question-container">
+                        <h3 id="question-text" class="question-text"></h3>
+                        
+                        <div id="options-container" class="options-container">
+                            <!-- 选项动态生成 -->
+                        </div>
+                    </div>
+                    
+                    <div class="test-footer">
+                        <button id="prev-btn" class="btn btn-outline" style="visibility: hidden;">
+                            ← Previous
+                        </button>
+                        <div class="remaining-questions" style="display: none;">
+                            <span id="remaining">31</span> Questions Remaining
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 结果页 -->
+        <div id="result-page" class="page">
+            <div class="container">
+                <div class="result-card">
+                    <!-- 总体结果 -->
+                    <div id="overall-result" class="overall-result">
+                        <!-- 动态生成 -->
+                    </div>
+                    
+                    <!-- 雷达图和维度列表 -->
+                    <div class="analysis-section">
+                        <div class="radar-container">
+                            <h3 class="section-title">📊 六维雷达图</h3>
+                            <canvas id="radar-chart"></canvas>
+                        </div>
+                        
+                        <div class="dimensions-list">
+                            <h3 class="section-title">📈 详细维度分析</h3>
+                            <div id="dimensions-container">
+                                <!-- 动态生成 -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 详细建议 -->
+                    <div id="suggestions-section" class="suggestions-section">
+                        <!-- 动态生成 -->
+                    </div>
+                    
+                    <!-- AI Upgrade Section -->
+                    <div class="upgrade-card" id="upgrade-section">
+                        <div class="upgrade-badge">⭐ Upgrade to Unlock</div>
+                        <h2 class="upgrade-title">Unlock AI Deep Analysis Report</h2>
+                        <p class="upgrade-desc">
+                            Want more accurate personalized analysis and professional improvement plans?<br>
+                            Upgrade to AI Smart Analysis version for deeper psychological insights
+                        </p>
+                        <div class="upgrade-features">
+                            <div class="upgrade-feature">
+                                <span>✓</span>Deep psychological pattern analysis
+                            </div>
+                            <div class="upgrade-feature">
+                                <span>✓</span>15+ customized improvement suggestions
+                            </div>
+                            <div class="upgrade-feature">
+                                <span>✓</span>Professional detailed report (20+ pages)
+                            </div>
+                            <div class="upgrade-feature">
+                                <span>✓</span>Relationship compatibility comparative analysis
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" id="upgrade-btn">
+                            <span>🚀</span>
+                            Upgrade Now to Unlock
+                        </button>
+                    </div>
+                    
+                    <div class="result-actions">
+                        <button id="restart-btn" class="btn btn-primary">
+                            Retake Test 💕
+                        </button>
+                        <button id="view-history-btn" class="btn btn-secondary">
+                            View History 📋
+                        </button>
+                    </div>
+
+                    <div class="disclaimer">
+                        This test result is for entertainment reference only and does not constitute professional advice 💖
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- History Page -->
+        <div id="history-page" class="page">
+            <div class="container">
+                <div class="history-card">
+                    <h2 class="history-title">📋 Test History</h2>
+                    <div id="history-container" class="history-container">
+                        <!-- Dynamically generated -->
+                    </div>
+                    <button id="back-to-intro-btn" class="btn btn-primary">
+                        Back to Home
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
