@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://734183178.github.io/cepin/sitemap.xml
+Sitemap: https://mindscreen.xyz/sitemap.xml
 
 # Block unnecessary bots
 User-agent: AhrefsBot
