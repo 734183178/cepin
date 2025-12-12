@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psychological Age Test | Free 32-Question Mental Age Assessment</title>
+    <meta name="description" content="🧠 Discover your psychological age in just 5 minutes! Free scientific assessment with 32 questions evaluating your mental maturity. Compare mental vs actual age. No signup required.">
+    <meta name="keywords" content="psychological age test, mental age assessment, emotional maturity test, age psychology, mental development quiz, free psychological test, age gap analysis">
+    <meta name="author" content="Psychological Age Assessment">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mindscreen.xyz/Psychologicalage/">
+    <meta property="og:title" content="Psychological Age Test - Discover Your Mental Age">
+    <meta property="og:description" content="🧠 Find out your psychological age with our scientific assessment. 32 questions evaluating mental maturity. Free instant results!">
+    <meta property="og:image" content="https://mindscreen.xyz/Psychologicalage/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://mindscreen.xyz/Psychologicalage/">
+    <meta property="twitter:title" content="Psychological Age Test - Discover Your Mental Age">
+    <meta property="twitter:description" content="🧠 Find out your psychological age with our scientific assessment. Free instant results!">
+    <meta property="twitter:image" content="https://mindscreen.xyz/Psychologicalage/og-image.jpg">
+
+    <!-- Additional SEO -->
+    <link rel="canonical" href="https://mindscreen.xyz/Psychologicalage/">
+    <link rel="alternate" hreflang="zh" href="https://mindscreen.xyz/zh/Psychologicalage/">
+    <link rel="alternate" hreflang="en" href="https://mindscreen.xyz/Psychologicalage/">
+    <link rel="alternate" hreflang="x-default" href="https://mindscreen.xyz/Psychologicalage/">
+
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Quiz",
+        "name": "Psychological Age Assessment",
+        "description": "Comprehensive psychological age assessment evaluating mental maturity across multiple dimensions compared to chronological age.",
+        "url": "https://mindscreen.xyz/Psychologicalage/",
+        "about": "Developmental Psychology",
+        "educationalLevel": "General Public",
+        "learningResourceType": "assessment",
+        "audience": {
+            "@type": "EducationalAudience",
+            "educationalRole": "student"
+        },
+        "timeRequired": "PT5M",
+        "interactionStatistic": {
+            "@type": "InteractionCounter",
+            "interactionType": "https://schema.org/AssessAction",
+            "userInteractionCount": 35000
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Psychological Age Assessment"
+        }
+    }
+    </script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- ==================== Introduction Page ==================== -->
+    <div id="introPage" class="page active">
+        <div class="container">
+            <div class="card">
+                <h1 class="intro-title" id="introTitle" onclick="toggleQuickTest()">Psychological Age Test</h1>
+                <p class="intro-subtitle">Psychological Age Test</p>
+
+                <p class="intro-text">
+                    Psychological age refers to the age characteristics displayed by a person in psychological and mental aspects, which are not completely consistent with actual age. A person goes through 8 psychological periods throughout life: fetal, infant, early childhood, childhood, adolescence, youth, middle age, and old age.
+                </p>
+
+                <p class="intro-text">
+                    This test uses 32 questions to evaluate your psychological age from multiple dimensions such as life attitude, behavioral habits, and thinking patterns, helping you understand your mental state.
+                </p>
+
+                <div class="info-box">
+                    <h3>📋 Test Instructions</h3>
+                    <p>• 32 questions total, estimated time: 5-8 minutes</p>
+                    <p>• Answer based on your true feelings, no right or wrong answers</p>
+                    <p>• Every question must be answered to continue</p>
+                    <p>• Recommend completing the test in a quiet environment</p>
+                </div>
+
+                <div class="age-input-box">
+                    <label for="actualAge">Please enter your actual age</label>
+                    <input type="number" id="actualAge" min="8" max="100" placeholder="18" required>
+                    <p style="font-size: 14px; color: #059669; margin-top: 8px;">
+                        (Used to calculate the difference between psychological and actual age)
+                    </p>
+                </div>
+
+                <button class="start-btn" onclick="startTest()" id="startBtn" disabled>
+                    Start Test
+                </button>
+
+                <!-- Quick test button -->
+                <button class="quick-test-btn" onclick="quickTest()" id="quickTestBtn" style="display: none;">
+                    🚀 Quick Test
+                </button>
+                <p class="quick-test-note"
+                    style="font-size: 12px; color: #6b7280; margin-top: 8px; text-align: center;">
+                    (Quick test will auto-fill age and randomly select answers, showing results directly)
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== Quiz Page ==================== -->
+    <div id="quizPage" class="page">
+        <div class="container quiz-container">
+            <div class="card">
+                <h2 class="quiz-header">Psychological Age Test</h2>
+
+                <!-- Progress section -->
+                <div class="progress-section">
+                    <div class="progress-text">
+                        <div>
+                            <span class="progress-current" id="currentQuestion">1</span>
+                            <span class="progress-total">/ 32</span>
+                        </div>
+                        <span class="progress-percent" id="progressPercent">3%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
+
+                <!-- Question area -->
+                <div class="question-text" id="questionText"></div>
+
+                <!-- Options area -->
+                <ul class="options-list" id="optionsList"></ul>
+
+                <!-- Bottom navigation -->
+                <div class="quiz-footer">
+                    <button class="prev-btn" onclick="prevQuestion()" id="prevBtn" disabled>
+                        ← Previous
+                    </button>
+                    <span class="remaining-text">
+                        <strong id="remainingCount">32</strong> questions remaining
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== Results Page ==================== -->
+    <div id="resultPage" class="page">
+        <div class="container result-container">
+            <!-- Top banner -->
+            <div class="result-banner">
+                <p>Explore your true inner age and understand your mental state</p>
+            </div>
+
+            <div class="card">
+                <h2 class="result-title">Psychological Age Test Results</h2>
+
+                <!-- Age cards area -->
+                <div class="age-cards-wrapper">
+                    <!-- Psychological age card -->
+                    <div class="age-card mental-age-card">
+                        <div class="age-card-label">Your Psychological Age</div>
+                        <div class="age-card-value" id="mentalAgeDisplay">35 years</div>
+                    </div>
+
+                    <!-- Actual age card -->
+                    <div class="age-card actual-age-card">
+                        <div class="age-card-label">Your Actual Age</div>
+                        <div class="age-card-value" id="actualAgeDisplay">25 years</div>
+                    </div>
+                </div>
+
+                <!-- Emoji icon -->
+                <div class="emoji-section">
+                    <div class="emoji-icon">🤔</div>
+                </div>
+
+                <!-- Age difference notice -->
+                <div class="age-difference-text" id="ageDifferenceText">
+                    Your psychological age is 10 years older
+                </div>
+
+                <!-- Detailed description -->
+                <div class="result-description-new" id="resultDescription"></div>
+
+                <!-- Suggestion box -->
+                <div class="result-suggestion" id="resultSuggestion"></div>
+
+
+                <!-- AI upgrade prompt -->
+                <div class="upgrade-card" onclick="handlePremiumReport()" style="
+                    background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 165, 0, 0.1) 100%);
+                    border: 2px solid rgba(255, 215, 0, 0.3);
+                    padding: 40px;
+                    border-radius: 25px;
+                    text-align: center;
+                    margin: 40px 0;
+                    position: relative;
+                    overflow: hidden;
+                    cursor: pointer;
+                ">
+                    <div class="upgrade-badge" style="
+                        display: inline-block;
+                        background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+                        color: #000;
+                        padding: 8px 20px;
+                        border-radius: 20px;
+                        font-size: 14px;
+                        font-weight: 700;
+                        margin-bottom: 20px;
+                    ">⭐ Upgrade Now</div>
+                    <h2 class="upgrade-title" style="
+                        font-size: 28px;
+                        color: #ffd700;
+                        margin-bottom: 15px;
+                        font-weight: 700;
+                    ">Unlock AI Deep Analysis Report</h2>
+                    <p class="upgrade-desc" style="
+                        font-size: 16px;
+                        color: #ccc;
+                        margin-bottom: 30px;
+                        line-height: 1.8;
+                    ">Want more accurate personalized analysis and professional improvement suggestions?<br>Upgrade to AI intelligent analysis version for deeper psychological insights</p>
+                    <div class="upgrade-features" style="
+                        display: flex;
+                        justify-content: center;
+                        gap: 30px;
+                        flex-wrap: wrap;
+                        margin-bottom: 30px;
+                    ">
+                        <div class="upgrade-feature" style="
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+                            color: #ffd700;
+                            font-size: 15px;
+                        "><span>✓</span>Deep psychological pattern analysis</div>
+                        <div class="upgrade-feature" style="
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+                            color: #ffd700;
+                            font-size: 15px;
+                        "><span>✓</span>15+ customized improvement suggestions</div>
+                        <div class="upgrade-feature" style="
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+                            color: #ffd700;
+                            font-size: 15px;
+                        "><span>✓</span>Professional detailed report (20+ pages)</div>
+                        <div class="upgrade-feature" style="
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+                            color: #ffd700;
+                            font-size: 15px;
+                        "><span>✓</span>Relationship compatibility analysis</div>
+                    </div>
+                    <button class="btn btn-primary" style="
+                        padding: 18px 40px;
+                        border: none;
+                        border-radius: 30px;
+                        font-size: 16px;
+                        font-weight: 600;
+                        cursor: pointer;
+                        transition: all 0.4s;
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 10px;
+                        background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+                        color: #000;
+                    ">
+                        <span>🚀</span>
+                        Upgrade Now to Unlock
+                    </button>
+                </div>
+
+                <!-- Retest section -->
+                <div class="restart-section">
+                    <button class="restart-btn" onclick="restartTest()">
+                        Retest
+                    </button>
+                    <p class="disclaimer">
+                        * This test is for self-understanding reference only and cannot be used as a basis for professional psychological assessment.<br>
+                        If you have mental health concerns, it is recommended to consult a professional psychological counselor.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
