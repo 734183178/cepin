@@ -211,8 +211,16 @@ function showPage(pageName) {
     window.scrollTo(0, 0);
 }
 
-// Start test
-document.getElementById('start-btn').addEventListener('click', () => {
+// Start test - original button (removed from HTML)
+// document.getElementById('start-btn').addEventListener('click', () => {
+//     currentQuestion = 0;
+//     answers = {};
+//     showPage('test');
+//     renderQuestion();
+// });
+
+// Start test - immediate button
+document.getElementById('start-btn-immediate').addEventListener('click', () => {
     currentQuestion = 0;
     answers = {};
     showPage('test');
@@ -606,7 +614,8 @@ function runAutoTest(mode) {
 }
 
 // Event listeners
-document.getElementById('history-btn').addEventListener('click', showHistory);
+// document.getElementById('history-btn').addEventListener('click', showHistory); // Removed - no longer exists in HTML
+document.getElementById('history-btn-quick').addEventListener('click', showHistory);
 document.getElementById('view-history-btn').addEventListener('click', showHistory);
 document.getElementById('back-to-intro-btn').addEventListener('click', () => showPage('intro'));
 
