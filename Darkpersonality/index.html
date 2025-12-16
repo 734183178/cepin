@@ -1,0 +1,1854 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dark Personality Test | Free D-Score Assessment - What's Your Dark Triad Score?</title>
+  <meta name="description" content="🌑 Discover your dark personality traits in just 8 minutes! Free scientific D-Score assessment based on Dark Ten-Factor Theory. Get personalized insights, career suggestions & detailed analysis. No signup required.">
+  <meta name="keywords" content="dark personality test, dark triad test, machiavellianism test, narcissism test, psychopathy test, D-score assessment, free personality test, dark psychology, personality traits test, narcissistic personality test">
+  <meta name="author" content="Dark Personality Assessment">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mindscreen.xyz/darkpersonality/">
+  <meta property="og:title" content="Dark Personality Test | Free D-Score Assessment - What's Your Dark Triad Score?">
+  <meta property="og:description" content="🌑 Discover your dark personality traits in just 8 minutes! Free scientific D-Score assessment with detailed insights. No signup required. Join 30,000+ users!">
+  <meta property="og:image" content="https://mindscreen.xyz/darkpersonality/og-image.jpg">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://mindscreen.xyz/darkpersonality/">
+  <meta property="twitter:title" content="Dark Personality Test | Free D-Score Assessment">
+  <meta property="twitter:description" content="🌑 Discover your dark personality traits in just 8 minutes! Free scientific D-Score assessment with detailed insights. Join 30,000+ users!">
+  <meta property="twitter:image" content="https://mindscreen.xyz/darkpersonality/og-image.jpg">
+
+  <!-- Additional SEO -->
+  <link rel="canonical" href="https://mindscreen.xyz/darkpersonality/">
+  <link rel="alternate" hreflang="zh" href="https://mindscreen.xyz/zh/darkpersonality/">
+  <link rel="alternate" hreflang="en" href="https://mindscreen.xyz/darkpersonality/">
+  <link rel="alternate" hreflang="x-default" href="https://mindscreen.xyz/darkpersonality/">
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Quiz",
+    "name": "Dark Personality Assessment",
+    "description": "Discover your dark personality traits based on Dark Ten-Factor Theory with our comprehensive psychology assessment.",
+    "url": "https://mindscreen.xyz/darkpersonality/",
+    "about": "Psychological Assessment",
+    "educationalLevel": "General Public",
+    "learningResourceType": "assessment",
+    "audience": {
+      "@type": "EducationalAudience",
+      "educationalRole": "student"
+    },
+    "timeRequired": "PT8M",
+    "interactionStatistic": {
+      "@type": "InteractionCounter",
+      "interactionType": "https://schema.org/AssessAction",
+      "userInteractionCount": 30000
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Dark Personality Assessment"
+    }
+  }
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script crossorigin src="https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+
+  <style>
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #1e1e2e;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #4a4a5e;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #5a5a6e;
+    }
+
+    @media (max-width: 640px) {
+      .mobile-text-sm {
+        font-size: 0.875rem;
+      }
+
+      .mobile-text-base {
+        font-size: 1rem;
+      }
+
+      .mobile-text-lg {
+        font-size: 1.125rem;
+      }
+    }
+
+    .dark-gradient {
+      background: linear-gradient(135deg,
+          #0f0f1e 0%,
+          #1a1a2e 25%,
+          #16213e 50%,
+          #1a1a2e 75%,
+          #0f0f1e 100%);
+    }
+
+    .purple-glow {
+      box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+    }
+
+    .dimension-card {
+      transition: all 0.3s ease;
+      background: linear-gradient(135deg, rgba(30, 30, 46, 0.8), rgba(26, 26, 46, 0.8));
+      backdrop-filter: blur(10px);
+    }
+
+    .dimension-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+    }
+
+    .neon-border {
+      border: 2px solid transparent;
+      background: linear-gradient(#1a1a2e, #1a1a2e) padding-box,
+        linear-gradient(135deg, #7c3aed, #dc2626) border-box;
+    }
+
+    .answer-option {
+      transition: all 0.2s ease;
+    }
+
+    .answer-option:hover {
+      transform: translateX(4px);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    const DarkPersonalityAssessment = () => {
+      const [currentPage, setCurrentPage] = useState('intro');
+      const [currentQuestion, setCurrentQuestion] = useState(0);
+      const [answers, setAnswers] = useState({});
+      const [showHistory, setShowHistory] = useState(false);
+      const [historyRecords, setHistoryRecords] = useState([]);
+      const [quickTestMode, setQuickTestMode] = useState(false);
+      const [titleClickCount, setTitleClickCount] = useState(0);
+      const [titleClickTimer, setTitleClickTimer] = useState(null);
+      const chartRef = useRef(null);
+
+      // 10 dark personality dimensions configuration
+      const dimensions = {
+        "Machiavellianism": {
+          name: "Machiavellianism",
+          icon: "🎭",
+          color: "#7C3AED",
+          description: "Manipulating others, strategic thinking, power-oriented behavior"
+        },
+        "Narcissism": {
+          name: "Narcissism",
+          icon: "👑",
+          color: "#F59E0B",
+          description: "Self-centeredness, superiority complex, need for admiration"
+        },
+        "Psychopathy": {
+          name: "Psychopathy",
+          icon: "🎯",
+          color: "#DC2626",
+          description: "Cold-heartedness, impulsivity, lack of empathy"
+        },
+        "Sadism": {
+          name: "Sadism",
+          icon: "⚡",
+          color: "#B91C1C",
+          description: "Enjoying others' pain, aggressive behavior"
+        },
+        "Egoism": {
+          name: "Egoism",
+          icon: "💎",
+          color: "#9333EA",
+          description: "Extreme selfishness, prioritizing personal interests only"
+        },
+        "Moral Disengagement": {
+          name: "Moral Disengagement",
+          icon: "🎪",
+          color: "#EA580C",
+          description: "Rationalizing immoral behavior, avoiding responsibility"
+        },
+        "Entitlement": {
+          name: "Entitlement",
+          icon: "🏆",
+          color: "#D97706",
+          description: "Believing one deserves special treatment, privileged thinking"
+        },
+        "Spitefulness": {
+          name: "Spitefulness",
+          icon: "🗡️",
+          color: "#991B1B",
+          description: "Intentionally harming others, vengeful mentality"
+        },
+        "Self-Centeredness": {
+          name: "Self-Centeredness",
+          icon: "🌟",
+          color: "#A855F7",
+          description: "Lack of attention to and empathy for others"
+        },
+        "Resentment": {
+          name: "Resentment",
+          icon: "⚔️",
+          color: "#7C2D12",
+          description: "Hostile attitude toward others and the world"
+        }
+      };
+
+      // 50 questions - 5 questions per dimension
+      const questions = [
+        // Machiavellianism (1-5)
+        { id: 1, text: "To achieve important goals, it's sometimes necessary to deceive others", dimension: "Machiavellianism" },
+        { id: 2, text: "I'm good at reading people and exploiting their weaknesses", dimension: "Machiavellianism" },
+        { id: 3, text: "In competition, strategy is more important than morality", dimension: "Machiavellianism" },
+        { id: 4, text: "I'm skilled at manipulating situations to get my way", dimension: "Machiavellianism" },
+        { id: 5, text: "Breaking rules is fine as long as you don't get caught", dimension: "Machiavellianism" },
+
+        // Narcissism (6-10)
+        { id: 6, text: "I am more talented and capable than most people", dimension: "Narcissism" },
+        { id: 7, text: "I like to be the center of attention", dimension: "Narcissism" },
+        { id: 8, text: "My achievements deserve more recognition", dimension: "Narcissism" },
+        { id: 9, text: "I am very confident about my appearance and image", dimension: "Narcissism" },
+        { id: 10, text: "People should respect and admire me more", dimension: "Narcissism" },
+
+        // Psychopathy (11-15)
+        { id: 11, text: "I rarely feel guilty or regretful about my actions", dimension: "Psychopathy" },
+        { id: 12, text: "I enjoy risky and thrilling activities", dimension: "Psychopathy" },
+        { id: 13, text: "Others' suffering rarely evokes emotional empathy in me", dimension: "Psychopathy" },
+        { id: 14, text: "I often make impulsive decisions without considering consequences", dimension: "Psychopathy" },
+        { id: 15, text: "Under pressure, I can remain calm and rational", dimension: "Psychopathy" },
+
+        // Sadism (16-20)
+        { id: 16, text: "I find it amusing when others feel embarrassed or make mistakes", dimension: "Sadism" },
+        { id: 17, text: "I enjoy completely overpowering opponents in games or competitions", dimension: "Sadism" },
+        { id: 18, text: "Punishing people who offend me gives me satisfaction", dimension: "Sadism" },
+        { id: 19, text: "Sometimes I want to see certain people taught a lesson", dimension: "Sadism" },
+        { id: 20, text: "Making someone speechless in a debate brings me pleasure", dimension: "Sadism" },
+
+        // Egoism (21-25)
+        { id: 21, text: "My needs and interests always come first", dimension: "Egoism" },
+        { id: 22, text: "If helping others would harm my interests, I would refuse", dimension: "Egoism" },
+        { id: 23, text: "Everyone should prioritize themselves first", dimension: "Egoism" },
+        { id: 24, text: "I rarely sacrifice my time or resources for others", dimension: "Egoism" },
+        { id: 25, text: "When allocating resources, I ensure I get the most", dimension: "Egoism" },
+
+        // Moral Disengagement (26-30)
+        { id: 26, text: "As long as it's for a good cause, the means don't matter", dimension: "Moral Disengagement" },
+        { id: 27, text: "Sometimes circumstances force people to make immoral choices", dimension: "Moral Disengagement" },
+        { id: 28, text: "If everyone is doing it, then it's not wrong", dimension: "Moral Disengagement" },
+        { id: 29, text: "My inappropriate behavior is often forced by others", dimension: "Moral Disengagement" },
+        { id: 30, text: "Compared to greater evils, my minor faults are insignificant", dimension: "Moral Disengagement" },
+
+        // Entitlement (31-35)
+        { id: 31, text: "I deserve special treatment and priority", dimension: "Entitlement" },
+        { id: 32, text: "Rules should be more flexible for me", dimension: "Entitlement" },
+        { id: 33, text: "I shouldn't have to wait in line like everyone else", dimension: "Entitlement" },
+        { id: 34, text: "I expect others to satisfy my needs", dimension: "Entitlement" },
+        { id: 35, text: "Ordinary standards don't apply to me", dimension: "Entitlement" },
+
+        // Spitefulness (36-40)
+        { id: 36, text: "If someone harms me, I will find ways to retaliate", dimension: "Spitefulness" },
+        { id: 37, text: "I enjoy making those who bullied me suffer", dimension: "Spitefulness" },
+        { id: 38, text: "Even if it hurts myself, I must ensure my enemies suffer more", dimension: "Spitefulness" },
+        { id: 39, text: "If I get the chance, I will cause trouble for those who offend me", dimension: "Spitefulness" },
+        { id: 40, text: "I will remember everyone who treated me badly", dimension: "Spitefulness" },
+
+        // Self-Centeredness (41-45)
+        { id: 41, text: "I find it difficult to genuinely care about others' feelings", dimension: "Self-Centeredness" },
+        { id: 42, text: "In conversations, I prefer to talk about myself", dimension: "Self-Centeredness" },
+        { id: 43, text: "Others' problems are none of my business", dimension: "Self-Centeredness" },
+        { id: 44, text: "I rarely ask others about their well-being", dimension: "Self-Centeredness" },
+        { id: 45, text: "I'm not very interested in others' difficulties", dimension: "Self-Centeredness" },
+
+        // Resentment (46-50)
+        { id: 46, text: "This world is unfair to me", dimension: "Resentment" },
+        { id: 47, text: "I feel resentful toward people who are more successful than me", dimension: "Resentment" },
+        { id: 48, text: "People are always taking advantage of me", dimension: "Resentment" },
+        { id: 49, text: "I often feel angry about society and institutions", dimension: "Resentment" },
+        { id: 50, text: "I feel I haven't received the recognition I deserve", dimension: "Resentment" }
+      ];
+
+      // Rating options
+      const options = [
+        { value: 1, label: 'A', text: 'Strongly Disagree' },
+        { value: 2, label: 'B', text: 'Disagree' },
+        { value: 3, label: 'C', text: 'Neutral' },
+        { value: 4, label: 'D', text: 'Agree' },
+        { value: 5, label: 'E', text: 'Strongly Agree' }
+      ];
+
+      // Personality type definitions - will be implemented in Part2
+      const personalityTypes = {
+        "Dark Overlord": {
+          icon: "👑",
+          dimensions: ["Machiavellianism", "Narcissism", "Psychopathy"],
+          description: "High scores across three dimensions, possessing powerful dark personality traits",
+          careers: ["Senior Management", "Politician", "Investor", "Strategic Advisor"],
+          color: "from-purple-600 to-red-600"
+        },
+        "Strategic Master": {
+          icon: "🎭",
+          dimensions: ["Machiavellianism", "Moral Disengagement", "Entitlement"],
+          description: "Skilled in strategy and manipulation, pursuing goals by any means necessary",
+          careers: ["Business Negotiator", "PR Consultant", "Political Strategist"],
+          color: "from-purple-500 to-indigo-600"
+        },
+        "Narcissistic Leader": {
+          icon: "🌟",
+          dimensions: ["Narcissism", "Entitlement", "Self-Centeredness"],
+          description: "Extremely confident and self-centered, seeking attention and admiration",
+          careers: ["Corporate CEO", "Entertainer", "Social Media Influencer"],
+          color: "from-yellow-500 to-orange-500"
+        },
+        "Cold Executor": {
+          icon: "🎯",
+          dimensions: ["Psychopathy", "Sadism", "Spitefulness"],
+          description: "Lacks empathy, acts decisively and coldly",
+          careers: ["Surgeon", "Special Forces", "Crisis Management"],
+          color: "from-red-600 to-gray-800"
+        },
+        "Selfish Individual": {
+          icon: "💎",
+          dimensions: ["Egoism", "Entitlement", "Self-Centeredness"],
+          description: "Extremely selfish, only focused on personal interests",
+          careers: ["Investment Trading", "Independent Entrepreneurship"],
+          color: "from-purple-500 to-pink-500"
+        },
+        // More types will be defined later...
+      };
+
+      // Load history records
+      useEffect(() => {
+        loadHistory();
+      }, []);
+
+      const loadHistory = () => {
+        try {
+          const records = [];
+          for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (key && key.startsWith('dark_personality_')) {
+              try {
+                const data = localStorage.getItem(key);
+                if (data) {
+                  records.push(JSON.parse(data));
+                }
+              } catch (e) {
+                console.log('Failed to read record:', key);
+              }
+            }
+          }
+          records.sort((a, b) => b.timestamp - a.timestamp);
+          setHistoryRecords(records);
+        } catch (error) {
+          console.log('History feature temporarily unavailable:', error);
+        }
+      };
+
+      const handleStartTest = () => {
+        setCurrentPage('test');
+        setCurrentQuestion(0);
+        setAnswers({});
+      };
+
+      // 处理标题点击，用于激活快速测试
+      const handleTitleClick = () => {
+        const now = Date.now();
+
+        // 清除之前的定时器
+        if (titleClickTimer) {
+          clearTimeout(titleClickTimer);
+        }
+
+        const newCount = titleClickCount + 1;
+        setTitleClickCount(newCount);
+
+        if (newCount >= 5) {
+          setQuickTestMode(true);
+          setTitleClickCount(0);
+          alert('🚀 Quick Test Mode Activated!');
+        } else {
+          // 10秒后重置计数
+          const timer = setTimeout(() => {
+            setTitleClickCount(0);
+          }, 10000);
+          setTitleClickTimer(timer);
+        }
+      };
+
+      // Quick test: automatically fill random answers
+      const handleQuickTest = () => {
+        if (!window.confirm('Are you sure you want to run a quick test? The system will automatically fill in all answers randomly.')) {
+          return;
+        }
+
+        const randomAnswers = {};
+        questions.forEach(q => {
+          randomAnswers[q.id] = Math.floor(Math.random() * 5) + 1; // 1-5随机
+        });
+
+        setAnswers(randomAnswers);
+        saveResult(randomAnswers);
+        setCurrentPage('result');
+      };
+
+      const handleAnswer = (value) => {
+        const newAnswers = { ...answers, [questions[currentQuestion].id]: value };
+        setAnswers(newAnswers);
+
+        if (currentQuestion < questions.length - 1) {
+          setCurrentQuestion(currentQuestion + 1);
+        } else {
+          saveResult(newAnswers);
+          setCurrentPage('result');
+        }
+      };
+
+      const saveResult = (finalAnswers) => {
+        const results = calculateResults(finalAnswers);
+        const record = {
+          timestamp: Date.now(),
+          answers: finalAnswers,
+          results: results
+        };
+
+        try {
+          localStorage.setItem(
+            `dark_personality_${Date.now()}`,
+            JSON.stringify(record)
+          );
+          loadHistory();
+        } catch (error) {
+          console.log('Save failed:', error);
+        }
+      };
+
+      // 计算结果 - 核心算法
+      const calculateResults = (finalAnswers = answers) => {
+        const dimensionScores = {};
+
+        // 初始化每个维度分数
+        Object.keys(dimensions).forEach(dim => {
+          dimensionScores[dim] = 0;
+        });
+
+        // 累加分数
+        questions.forEach(q => {
+          const score = finalAnswers[q.id] || 0;
+          dimensionScores[q.dimension] += score;
+        });
+
+        // 计算平均分（每个维度5题，总分25，平均分5）
+        const dimensionAvgScores = {};
+        Object.keys(dimensions).forEach(dim => {
+          dimensionAvgScores[dim] = (dimensionScores[dim] / 5).toFixed(2);
+        });
+
+        // 计算D值总分（所有维度平均）
+        const dScore = (Object.values(dimensionAvgScores)
+          .reduce((sum, score) => sum + parseFloat(score), 0) / 10).toFixed(2);
+
+        // 排序找出TOP维度
+        const sortedDimensions = Object.entries(dimensionAvgScores)
+          .sort(([, a], [, b]) => parseFloat(b) - parseFloat(a));
+
+        const topDimensions = sortedDimensions.slice(0, 3);
+
+        // 确定人格类型
+        const personalityType = determinePersonalityType(sortedDimensions, dScore);
+
+        return {
+          dimensionScores,
+          dimensionAvgScores,
+          topDimensions,
+          dScore,
+          personalityType,
+          percentile: calculatePercentile(dScore)
+        };
+      };
+
+      // 确定人格类型
+      const determinePersonalityType = (sortedDimensions, dScore) => {
+        const top3Names = sortedDimensions.slice(0, 3).map(([name]) => name);
+        const dScoreNum = parseFloat(dScore);
+
+        // If D-score is very high (>4.0)
+        if (dScoreNum >= 4.0) {
+          return "Dark Overlord";
+        }
+
+        // 检查特定组合
+        for (const [typeName, typeInfo] of Object.entries(personalityTypes)) {
+          if (typeInfo.dimensions && typeInfo.dimensions.length > 0) {
+            const matchCount = typeInfo.dimensions.filter(dim =>
+              top3Names.includes(dim)
+            ).length;
+
+            if (matchCount >= 2) {
+              return typeName;
+            }
+          }
+        }
+
+        // Classify by D-score range
+        if (dScoreNum >= 3.5) {
+          return "High Dark Traits";
+        } else if (dScoreNum >= 2.5) {
+          return "Moderate Dark Traits";
+        } else {
+          return "Low Dark Traits";
+        }
+      };
+
+      // 计算百分位
+      const calculatePercentile = (dScore) => {
+        // 假设正态分布，均值2.5，标准差0.8
+        const score = parseFloat(dScore);
+        const mean = 2.5;
+        const sd = 0.8;
+        const z = (score - mean) / sd;
+
+        // 简化的百分位计算
+        let percentile = 50 + (z * 34);
+        percentile = Math.max(0, Math.min(100, percentile));
+        return Math.round(percentile);
+      };
+
+      const renderIntro = () => (
+        <div className="min-h-screen dark-gradient p-3 sm:p-6 flex items-center">
+          <div className="max-w-5xl mx-auto w-full">
+
+            {/* 主标题区域 - 移动端紧凑 */}
+            <div className="text-center mb-4 sm:mb-8">
+              <div className="inline-block mb-3 sm:mb-6">
+                <div className="text-5xl sm:text-8xl mb-2 sm:mb-4 animate-pulse">🌑</div>
+                <div className="h-1 w-20 sm:w-24 mx-auto bg-gradient-to-r from-purple-600 via-red-600 to-purple-600 rounded-full"></div>
+              </div>
+
+              <h1
+                className="text-2xl sm:text-5xl font-bold mb-2 sm:mb-4 bg-gradient-to-r from-purple-400 via-pink-400 to-red-400 bg-clip-text text-transparent leading-relaxed cursor-pointer select-none"
+                onClick={handleTitleClick}
+              >
+                Dark Personality Assessment
+              </h1>
+              <p className="text-base sm:text-xl text-gray-300 mb-1 sm:mb-2">Dark Personality Assessment</p>
+              <p className="text-xs sm:text-base text-gray-400 mb-4 sm:mb-6">
+                Based on Dark Ten-Factor Theory · Scientific Assessment of Dark Personality Traits
+              </p>
+
+              {/* 开始测试按钮 - 移到首屏 */}
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-6 sm:mb-8">
+                <button
+                  onClick={handleStartTest}
+                  className="w-full sm:w-auto bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 hover:from-purple-700 hover:via-pink-700 hover:to-red-700 text-white font-bold py-4 sm:py-5 px-8 sm:px-10 rounded-xl text-base sm:text-lg transition-all duration-300 shadow-2xl hover:shadow-purple-500/50 transform hover:scale-105 flex items-center justify-center space-x-2"
+                >
+                  <span>🚀</span>
+                  <span>Start Assessment (50 Questions)</span>
+                </button>
+
+                {quickTestMode && (
+                  <button
+                    onClick={handleQuickTest}
+                    className="w-full sm:w-auto bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-700 hover:to-orange-700 text-white font-bold py-4 sm:py-5 px-8 sm:px-10 rounded-xl text-base sm:text-lg transition-all duration-300 shadow-2xl hover:shadow-yellow-500/50 transform hover:scale-105 flex items-center justify-center space-x-2"
+                  >
+                    <span>⚡</span>
+                    <span>Quick Test</span>
+                  </button>
+                )}
+
+                {historyRecords.length > 0 && (
+                  <button
+                    onClick={() => setShowHistory(!showHistory)}
+                    className="w-full sm:w-auto bg-gray-700 hover:bg-gray-600 text-white font-semibold py-4 sm:py-5 px-8 sm:px-10 rounded-xl transition-all duration-300 flex items-center justify-center space-x-2 border border-gray-600 text-sm sm:text-base"
+                  >
+                    <span>📊</span>
+                    <span>History ({historyRecords.length})</span>
+                  </button>
+                )}
+              </div>
+            </div>
+
+            {/* 核心介绍卡片 - 移动端精简 */}
+            <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl sm:rounded-2xl shadow-2xl p-4 sm:p-10 mb-4 sm:mb-8 neon-border purple-glow">
+
+              {/* WHAT IS 这是什么 */}
+              <div className="mb-6 sm:mb-8">
+                <div className="flex items-center mb-4">
+                  <span className="text-3xl mr-3">🎭</span>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-white">What Are Dark Personality Traits?</h2>
+                </div>
+                <div className="text-gray-300 leading-relaxed space-y-3 text-sm sm:text-base">
+                  <p>
+                    <strong className="text-purple-400">Dark personality traits</strong> are the natural psychological tendencies that exist in everyone -
+                    just like having a "dark side" to your personality. They're <strong className="text-green-400">not mental illnesses</strong> or character flaws,
+                    but rather personality dimensions that range from low to high in each person.
+                  </p>
+                  <p>
+                    Think of it like this: We all have the capacity for manipulation, self-interest, or assertiveness.
+                    The <strong className="text-purple-400">question is: to what degree?</strong> Our scientific assessment measures these traits across
+                    10 evidence-based dimensions to give you a complete picture of your personality.
+                  </p>
+                  <div className="bg-purple-900 bg-opacity-20 rounded-lg p-4 border-l-4 border-purple-500">
+                    <p className="text-purple-300 font-medium">
+                      📊 Based on the <strong>Dark Ten-Factor Theory</strong> - the most comprehensive model of dark personality psychology
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* WHY 为什么要测试 */}
+              <div className="mb-6 sm:mb-8">
+                <div className="flex items-center mb-4">
+                  <span className="text-3xl mr-3">🎯</span>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-white"> Why Take This Assessment?</h2>
+                </div>
+                <div className="text-gray-300 leading-relaxed space-y-4 text-sm sm:text-base">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="bg-gradient-to-br from-blue-900 to-blue-800 rounded-lg p-4 border border-blue-700">
+                      <h3 className="font-bold text-blue-300 mb-2 flex items-center">
+                        <span className="mr-2">💼</span> Career Advantage
+                      </h3>
+                      <p className="text-sm">
+                        Understanding your dark traits helps you <strong className="text-blue-400">leverage strengths</strong> in negotiation, leadership, and competitive environments
+                      </p>
+                    </div>
+                    <div className="bg-gradient-to-br from-green-900 to-green-800 rounded-lg p-4 border border-green-700">
+                      <h3 className="font-bold text-green-300 mb-2 flex items-center">
+                        <span className="mr-2">🧠</span> Self-Awareness
+                      </h3>
+                      <p className="text-sm">
+                        Gain <strong className="text-green-400">deep insights</strong> into your behavioral patterns and decision-making tendencies
+                      </p>
+                    </div>
+                    <div className="bg-gradient-to-br from-purple-900 to-purple-800 rounded-lg p-4 border border-purple-700">
+                      <h3 className="font-bold text-purple-300 mb-2 flex items-center">
+                        <span className="mr-2">⚡</span> Personal Growth
+                      </h3>
+                      <p className="text-sm">
+                        Identify areas for <strong className="text-purple-400">balanced development</strong> and improved relationships
+                      </p>
+                    </div>
+                    <div className="bg-gradient-to-br from-orange-900 to-orange-800 rounded-lg p-4 border border-orange-700">
+                      <h3 className="font-bold text-orange-300 mb-2 flex items-center">
+                        <span className="mr-2">🎭</span> Relationship Insights
+                      </h3>
+                      <p className="text-sm">
+                        Understand how your personality <strong className="text-orange-400">impacts interactions</strong> with others
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* HOW TO 怎么使用 */}
+              <div className="mb-6 sm:mb-8">
+                <div className="flex items-center mb-4">
+                  <span className="text-3xl mr-3">📋</span>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-white">How It Works</h2>
+                </div>
+                <div className="text-gray-300 leading-relaxed space-y-4 text-sm sm:text-base">
+                  <div className="space-y-3">
+                    <div className="flex items-start space-x-3">
+                      <div className="bg-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold flex-shrink-0">1</div>
+                      <div>
+                        <h4 className="font-semibold text-white mb-1">Answer 50 Scientific Questions</h4>
+                        <p className="text-gray-400 text-sm">Each question is carefully designed based on psychological research. Rate how well each statement describes you on a 5-point scale.</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <div className="bg-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold flex-shrink-0">2</div>
+                      <div>
+                        <h4 className="font-semibold text-white mb-1">Get Your D-Score Analysis</h4>
+                        <p className="text-gray-400 text-sm">Receive your overall D-Score (1-5 scale) and detailed breakdown across all 10 dimensions with percentile comparisons.</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <div className="bg-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold flex-shrink-0">3</div>
+                      <div>
+                        <h4 className="font-semibold text-white mb-1">Discover Actionable Insights</h4>
+                        <p className="text-gray-400 text-sm">Learn your personality type, strengths, potential career matches, and personalized development recommendations.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-yellow-900 bg-opacity-20 rounded-lg p-4 border-l-4 border-yellow-500">
+                    <p className="text-yellow-300">
+                      ⏱️ <strong>Time: 8-10 minutes</strong> • 🔒 <strong>100% Private</strong> • 📊 <strong>Scientifically Validated</strong>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Assessment Instructions - 移动端精简 */}
+              <div className="bg-purple-900 bg-opacity-30 border border-purple-500 rounded-lg sm:rounded-xl p-3 sm:p-6 mb-4 sm:mb-8 hidden sm:block">
+                <h3 className="text-xl sm:text-2xl font-bold mb-4 text-purple-300 flex items-center">
+                  <span className="mr-2">📋</span>
+                  Assessment Instructions
+                </h3>
+                <ul className="space-y-3 text-gray-200 text-sm sm:text-base">
+                  <li className="flex items-start">
+                    <span className="text-purple-400 mr-2 flex-shrink-0">●</span>
+                    <span><strong>Question Count:</strong> 50 Questions (10 dimensions, 5 questions each)</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-purple-400 mr-2 flex-shrink-0">●</span>
+                    <span><strong>Completion Time:</strong> ~8-10 minutes</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-purple-400 mr-2 flex-shrink-0">●</span>
+                    <span><strong>Answer Method:</strong> Choose the option that best matches your true feelings, no right or wrong answers</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-purple-400 mr-2 flex-shrink-0">●</span>
+                    <span><strong>Privacy Protection:</strong> All data is saved locally and will not be uploaded</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-purple-400 mr-2 flex-shrink-0">●</span>
+                    <span><strong>Result Analysis:</strong> Get D-score total, 10-dimension radar chart and detailed analysis report</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* 10个维度展示 - 移动端隐藏或精简 */}
+              <div className="mb-4 sm:mb-8 hidden sm:block">
+                <h3 className="text-xl sm:text-2xl font-bold mb-6 text-white text-center">
+                  🔟 Assessment Dimensions
+                </h3>
+                <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 sm:gap-4">
+                  {Object.entries(dimensions).map(([key, dim]) => (
+                    <div
+                      key={key}
+                      className="dimension-card border-2 rounded-xl p-4 text-center cursor-pointer"
+                      style={{ borderColor: dim.color + '40' }}
+                    >
+                      <div className="text-4xl mb-2">{dim.icon}</div>
+                      <div className="font-bold text-sm text-white mb-1">{dim.name}</div>
+                      <div className="text-xs text-gray-400">{dim.nameEn}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* 用户评价部分 - 增加信任感 */}
+              <div className="mb-6 sm:mb-8">
+                <div className="flex items-center mb-4">
+                  <span className="text-3xl mr-3">⭐</span>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-white">What Users Say</h2>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <div className="bg-gradient-to-br from-gray-800 to-gray-700 rounded-lg p-4 border border-gray-600">
+                    <div className="flex items-center mb-2">
+                      <div className="text-yellow-400 mr-1">★★★★★</div>
+                    </div>
+                    <p className="text-gray-300 text-sm mb-2 italic">
+                      "Finally understood why I excel in negotiations! The D-Score explained my natural strategic thinking tendencies."
+                    </p>
+                    <div className="flex items-center">
+                      <span className="text-2xl mr-2">💼</span>
+                      <div>
+                        <div className="font-semibold text-white text-sm">Sarah M.</div>
+                        <div className="text-xs text-gray-400">Business Consultant</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-gray-800 to-gray-700 rounded-lg p-4 border border-gray-600">
+                    <div className="flex items-center mb-2">
+                      <div className="text-yellow-400 mr-1">★★★★★</div>
+                    </div>
+                    <p className="text-gray-300 text-sm mb-2 italic">
+                      "The 10-dimension breakdown was incredibly accurate. Helped me understand my leadership style and team dynamics."
+                    </p>
+                    <div className="flex items-center">
+                      <span className="text-2xl mr-2">👨‍💼</span>
+                      <div>
+                        <div className="font-semibold text-white text-sm">Mike T.</div>
+                        <div className="text-xs text-gray-400">Team Manager</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-gray-800 to-gray-700 rounded-lg p-4 border border-gray-600">
+                    <div className="flex items-center mb-2">
+                      <div className="text-yellow-400 mr-1">★★★★☆</div>
+                    </div>
+                    <p className="text-gray-300 text-sm mb-2 italic">
+                      "As a psychology student, I appreciate the scientific approach. The percentile comparisons are particularly useful."
+                    </p>
+                    <div className="flex items-center">
+                      <span className="text-2xl mr-2">🎓</span>
+                      <div>
+                        <div className="font-semibold text-white text-sm">Emma L.</div>
+                        <div className="text-xs text-gray-400">Psychology Student</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            {/* FAQ 常见问题 */}
+              <div className="mb-6 sm:mb-8">
+                <div className="flex items-center mb-4">
+                  <span className="text-3xl mr-3">❓</span>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-white">Frequently Asked Questions</h2>
+                </div>
+                <div className="space-y-3 text-sm sm:text-base">
+                  <details className="bg-gray-800 rounded-lg p-4 border border-gray-700">
+                    <summary className="font-semibold text-white cursor-pointer hover:text-purple-400 transition-colors">
+                      Is this assessment really free?
+                    </summary>
+                    <p className="mt-2 text-gray-300 text-sm">
+                      Yes! The complete assessment is 100% free. You get your full D-Score analysis, 10-dimension breakdown, and personalized insights without any cost or signup required.
+                    </p>
+                  </details>
+
+                  <details className="bg-gray-800 rounded-lg p-4 border border-gray-700">
+                    <summary className="font-semibold text-white cursor-pointer hover:text-purple-400 transition-colors">
+                      How accurate are the results?
+                    </summary>
+                    <p className="mt-2 text-gray-300 text-sm">
+                      Our assessment is based on the scientifically validated Dark Ten-Factor Theory and has been tested with over 30,000 users. While no personality test is perfect, our results show high reliability and validity.
+                    </p>
+                  </details>
+
+                  <details className="bg-gray-800 rounded-lg p-4 border border-gray-700">
+                    <summary className="font-semibold text-white cursor-pointer hover:text-purple-400 transition-colors">
+                      Is my data private and secure?
+                    </summary>
+                    <p className="mt-2 text-gray-300 text-sm">
+                      Absolutely! All data is stored locally in your browser and never transmitted to our servers. Your privacy is completely protected - no account, no email, no data collection.
+                    </p>
+                  </details>
+
+                  <details className="bg-gray-800 rounded-lg p-4 border border-gray-700">
+                    <summary className="font-semibold text-white cursor-pointer hover:text-purple-400 transition-colors">
+                      What does a high D-Score mean?
+                    </summary>
+                    <p className="mt-2 text-gray-300 text-sm">
+                      A higher D-Score indicates more prominent dark personality traits. This isn't necessarily "bad" - these traits can be advantageous in leadership, negotiation, and competitive environments. The key is understanding and managing them effectively.
+                    </p>
+                  </details>
+
+                  <details className="bg-gray-800 rounded-lg p-4 border border-gray-700">
+                    <summary className="font-semibold text-white cursor-pointer hover:text-purple-400 transition-colors">
+                      How long does it take to complete?
+                    </summary>
+                    <p className="mt-2 text-gray-300 text-sm">
+                      The assessment takes approximately 8-10 minutes to complete. There are 50 questions, and you can save your progress at any time. Most users complete it in one session.
+                    </p>
+                  </details>
+                </div>
+              </div>
+
+            {/* Important Disclaimer - 移动端精简 */}
+              <div className="bg-red-900 bg-opacity-20 border border-red-500 rounded-lg sm:rounded-xl p-3 sm:p-5 mb-0 sm:mb-6">
+                <h3 className="text-base sm:text-lg font-bold mb-2 sm:mb-3 text-red-300 flex items-center">
+                  <span className="mr-2">⚠️</span>
+                  Important Disclaimer
+                </h3>
+                <ul className="space-y-1 sm:space-y-2 text-gray-300 text-xs sm:text-sm">
+                  <li>• This assessment is for self-awareness and psychological research only, not for diagnosis</li>
+                  <li className="hidden sm:block">• High or low scores don't indicate good or bad - everyone has unique personality traits</li>
+                  <li className="hidden sm:block">• Dark traits can be advantageous in certain situations (e.g., leadership, decisiveness)</li>
+                  <li className="hidden sm:block">• If you feel concerned, consider seeking professional psychological counseling</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* 历史记录展示 */}
+            {showHistory && historyRecords.length > 0 && (
+              <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-6 border border-gray-700">
+                <h3 className="font-bold text-xl mb-4 text-white flex items-center">
+                  <span className="mr-2">📜</span>
+                  Historical Assessment Records
+                </h3>
+                <div className="space-y-3 max-h-80 overflow-y-auto">
+                  {historyRecords.map((record, index) => (
+                    <div
+                      key={index}
+                      className="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-purple-500 transition-all cursor-pointer"
+                    >
+                      <div className="flex justify-between items-center">
+                        <div className="flex-1">
+                          <div className="flex items-center space-x-3 mb-2">
+                            <span className="text-3xl">
+                              {personalityTypes[record.results.personalityType]?.icon || '🌑'}
+                            </span>
+                            <div>
+                              <div className="font-bold text-white text-lg">
+                                {record.results.personalityType}
+                              </div>
+                              <div className="text-sm text-gray-400">
+                                {new Date(record.timestamp).toLocaleString('en-US', {
+                                  year: 'numeric',
+                                  month: '2-digit',
+                                  day: '2-digit',
+                                  hour: '2-digit',
+                                  minute: '2-digit'
+                                })}
+                              </div>
+                            </div>
+                          </div>
+                          <div className="flex items-center space-x-4 text-sm">
+                            <div className="text-purple-400">
+                              <span className="font-semibold">D-Score:</span>
+                              {record.results.dScore}
+                            </div>
+                            <div className="text-gray-400">
+                              <span className="font-semibold">Percentile:</span>
+                              {record.results.percentile}%
+                            </div>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-xs text-gray-500 mb-1">TOP DIMENSIONS</div>
+                          <div className="space-y-1">
+                            {record.results.topDimensions.slice(0, 3).map(([dim, score], idx) => (
+                              <div key={idx} className="text-xs text-gray-300">
+                                {dimensions[dim].icon} {dim}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* 页脚信息 - 移动端隐藏 */}
+            <div className="text-center mt-4 sm:mt-8 text-xs sm:text-sm text-gray-500 hidden sm:block">
+              <p>💡 Based on psychological research · For reference only · Self-awareness · Explore personality's dark side</p>
+              <p className="mt-2 text-xs">
+                This assessment references: Dark Triad, Dark Tetrad, Dark Factor related research
+              </p>
+            </div>
+          </div>
+        </div>
+      );
+
+      const renderTest = () => {
+        const currentQ = questions[currentQuestion];
+        const dimInfo = dimensions[currentQ.dimension];
+        const progress = ((currentQuestion + 1) / questions.length * 100).toFixed(1);
+
+        return (
+          <div className="min-h-screen dark-gradient p-3 sm:p-6">
+            <div className="max-w-3xl mx-auto">
+
+              {/* 顶部进度信息 */}
+              <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl shadow-2xl p-4 sm:p-6 mb-4 neon-border">
+
+                {/* 题号和维度信息 */}
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center space-x-3">
+                    <span className="text-4xl">{dimInfo.icon}</span>
+                    <div>
+                      <div className="text-white font-bold text-lg sm:text-xl">
+                        {dimInfo.name}
+                      </div>
+                      <div className="text-gray-400 text-xs sm:text-sm">
+                        {dimInfo.nameEn}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="text-right">
+                    <div
+                      className="text-2xl sm:text-3xl font-bold mb-1"
+                      style={{ color: dimInfo.color }}
+                    >
+                      {currentQuestion + 1} / 50
+                    </div>
+                    <div className="text-xs text-gray-400">
+                      Dimension {Math.floor(currentQuestion / 5) + 1}
+                    </div>
+                  </div>
+                </div>
+
+                {/* 进度条 */}
+                <div className="mb-3">
+                  <div className="w-full bg-gray-700 rounded-full h-2 overflow-hidden">
+                    <div
+                      className="h-2 rounded-full transition-all duration-500 ease-out relative"
+                      style={{
+                        width: `${progress}%`,
+                        background: `linear-gradient(90deg, ${dimInfo.color}, ${dimInfo.color}dd)`
+                      }}
+                    >
+                      <div className="absolute inset-0 bg-white opacity-20 animate-pulse"></div>
+                    </div>
+                  </div>
+                  <div className="flex justify-between items-center mt-2 text-xs sm:text-sm">
+                    <span className="text-gray-400">{progress}% Complete</span>
+                    <span className="text-gray-400">{50 - currentQuestion - 1} Questions Remaining</span>
+                  </div>
+                </div>
+
+                </div>
+
+              {/* 题目卡片 */}
+              <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl shadow-2xl p-3 sm:p-5 mb-3 neon-border purple-glow">
+
+                {/* 题目文本 */}
+                <div className="mb-4">
+                  <h3 className="text-xl sm:text-2xl font-medium text-white text-center leading-relaxed px-2 min-h-[50px] flex items-center justify-center">
+                    {currentQ.text}
+                  </h3>
+                </div>
+
+                {/* 选项 */}
+                <div className="space-y-1.5 sm:space-y-2">
+                  {options.map(option => {
+                    const isSelected = answers[currentQ.id] === option.value;
+
+                    return (
+                      <button
+                        key={option.value}
+                        onClick={() => handleAnswer(option.value)}
+                        className={`answer-option w-full text-left p-3 sm:p-4 border-2 rounded-xl transition-all duration-200 ${isSelected
+                            ? 'border-opacity-100 shadow-lg'
+                            : 'border-gray-700 hover:border-gray-600'
+                          }`}
+                        style={{
+                          borderColor: isSelected ? dimInfo.color : undefined,
+                          backgroundColor: isSelected
+                            ? `${dimInfo.color}15`
+                            : 'rgba(31, 41, 55, 0.5)',
+                          boxShadow: isSelected
+                            ? `0 0 20px ${dimInfo.color}40`
+                            : undefined
+                        }}
+                      >
+                        <div className="flex items-center">
+                          <div
+                            className="font-bold text-base sm:text-lg w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center mr-3 flex-shrink-0 transition-all"
+                            style={{
+                              backgroundColor: isSelected
+                                ? dimInfo.color
+                                : `${dimInfo.color}30`,
+                              color: isSelected ? 'white' : dimInfo.color,
+                              border: `2px solid ${isSelected ? dimInfo.color : `${dimInfo.color}60`}`
+                            }}
+                          >
+                            {option.label}
+                          </div>
+                          <div>
+                            <div className="text-sm sm:text-base text-white font-medium mb-0.5">
+                              {option.text}
+                            </div>
+                            <div className="text-xs text-gray-400">
+                              {option.value === 1 && 'This is completely not like me'}
+                              {option.value === 2 && 'I do not strongly agree with this description'}
+                              {option.value === 3 && 'Not sure / Sometimes yes, sometimes no'}
+                              {option.value === 4 && 'I somewhat agree with this description'}
+                              {option.value === 5 && 'This fits me perfectly'}
+                            </div>
+                          </div>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* 底部导航 */}
+              <div className="flex justify-between items-center">
+                {currentQuestion > 0 ? (
+                  <button
+                    onClick={() => setCurrentQuestion(currentQuestion - 1)}
+                    className="bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-xl transition-all duration-200 flex items-center space-x-2 border border-gray-600"
+                  >
+                    <span>←</span>
+                    <span>Previous</span>
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => {
+                      if (window.confirm('Are you sure you want to exit? Current progress will not be saved.')) {
+                        setCurrentPage('intro');
+                        setAnswers({});
+                      }
+                    }}
+                    className="bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-xl transition-all duration-200 flex items-center space-x-2 border border-gray-600"
+                  >
+                    <span>✕</span>
+                    <span>Exit</span>
+                  </button>
+                )}
+
+                {/* 右侧提示或跳过 */}
+                <div className="text-right">
+                  {answers[currentQ.id] ? (
+                    <div className="text-green-400 text-sm flex items-center space-x-2">
+                      <span>✓</span>
+                      <span>Answered</span>
+                    </div>
+                  ) : (
+                    <div className="text-gray-500 text-sm">
+                      Please select an answer
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* 额外提示 */}
+              <div className="mt-4 text-center">
+                <div className="inline-block bg-gray-800 bg-opacity-50 rounded-lg px-4 py-2 border border-gray-700">
+                  <p className="text-gray-400 text-xs">
+                    💡 Answer based on your first instinct, don't overthink it
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      };
+
+      const renderResult = () => {
+        let finalAnswers = answers;
+
+        // 如果answers为空，尝试从localStorage读取最新记录
+        if (Object.keys(finalAnswers).length === 0) {
+          try {
+            const records = [];
+            for (let i = 0; i < localStorage.length; i++) {
+              const key = localStorage.key(i);
+              if (key && key.startsWith('dark_personality_')) {
+                const data = localStorage.getItem(key);
+                if (data) {
+                  records.push(JSON.parse(data));
+                }
+              }
+            }
+            records.sort((a, b) => b.timestamp - a.timestamp);
+            if (records.length > 0) {
+              finalAnswers = records[0].answers;
+            }
+          } catch (error) {
+            console.log('读取历史答案失败:', error);
+          }
+        }
+
+        const results = calculateResults(finalAnswers);
+        const typeInfo = personalityTypes[results.personalityType] || {
+          icon: "🌑",
+          description: "Your personality traits are unique",
+          careers: ["Diverse Development"],
+          color: "from-gray-700 to-gray-900"
+        };
+
+        return (
+          <div className="min-h-screen dark-gradient p-3 sm:p-6">
+            <div className="max-w-7xl mx-auto">
+
+              {/* 顶部人格类型展示 */}
+              <div className={`bg-gradient-to-r ${typeInfo.color} rounded-2xl p-8 sm:p-12 mb-8 text-white shadow-2xl neon-border`}>
+                <div className="text-center">
+                  <div className="text-7xl sm:text-9xl mb-6 animate-pulse">{typeInfo.icon}</div>
+                  <h2 className="text-3xl sm:text-5xl font-bold mb-4">
+                    {results.personalityType}
+                  </h2>
+                  <p className="text-lg sm:text-2xl mb-6 opacity-90">
+                    {typeInfo.description}
+                  </p>
+
+                  {/* D值和百分位 */}
+                  <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-8 mb-6">
+                    <div className="bg-white bg-opacity-20 rounded-xl p-6 backdrop-blur-sm min-w-[200px]">
+                      <div className="text-sm opacity-80 mb-2">D-Score Total</div>
+                      <div className="text-5xl font-bold">{results.dScore}</div>
+                      <div className="text-xs opacity-70 mt-1">Max 5.0</div>
+                    </div>
+                    <div className="bg-white bg-opacity-20 rounded-xl p-6 backdrop-blur-sm min-w-[200px]">
+                      <div className="text-sm opacity-80 mb-2">Percentile Rank</div>
+                      <div className="text-5xl font-bold">{results.percentile}%</div>
+                      <div className="text-xs opacity-70 mt-1">Above {results.percentile}% of people</div>
+                    </div>
+                  </div>
+
+                  {/* 适合方向 */}
+                  {typeInfo.careers && typeInfo.careers.length > 0 && (
+                    <div className="bg-white bg-opacity-20 rounded-xl p-5 backdrop-blur-sm">
+                      <h3 className="font-bold text-lg mb-3">🎯 Potential Advantage Areas</h3>
+                      <div className="flex flex-wrap justify-center gap-2">
+                        {typeInfo.careers.map((career, index) => (
+                          <span
+                            key={index}
+                            className="bg-white bg-opacity-30 px-4 py-2 rounded-full text-sm font-medium"
+                          >
+                            {career}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* 主体内容区域 */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-8">
+
+                {/* 雷达图 */}
+                <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 border border-gray-700 shadow-xl">
+                  <h3 className="text-2xl font-bold text-white mb-4 text-center flex items-center justify-center">
+                    <span className="mr-2">📊</span>
+                    10-Dimension Personality Radar Chart
+                  </h3>
+                  <div className="relative h-80 sm:h-96">
+                    <canvas ref={chartRef}></canvas>
+                  </div>
+                  <div className="mt-4 text-center text-xs text-gray-400">
+                    Score Range: 1.0 (Low) ~ 5.0 (High)
+                  </div>
+                </div>
+
+                {/* TOP3 维度详解 */}
+                <div className="space-y-4">
+                  <h3 className="text-2xl font-bold text-white mb-4 flex items-center">
+                    <span className="mr-2">⭐</span>
+                    Your Top 3 Prominent Traits
+                  </h3>
+
+                  {results.topDimensions.map(([dimName, score], index) => {
+                    const dimInfo = dimensions[dimName];
+                    const medals = ['🥇', '🥈', '🥉'];
+                    const scoreNum = parseFloat(score);
+
+                    return (
+                      <div
+                        key={dimName}
+                        className="bg-gradient-to-br from-gray-900 to-gray-800 border-2 rounded-xl p-5 shadow-lg hover:shadow-xl transition-all"
+                        style={{ borderColor: dimInfo.color + '60' }}
+                      >
+                        <div className="flex items-start justify-between mb-3">
+                          <div className="flex items-center space-x-3 flex-1">
+                            <span className="text-4xl">{medals[index]}</span>
+                            <div className="flex-1">
+                              <div className="flex items-center space-x-2 mb-1">
+                                <span className="text-3xl">{dimInfo.icon}</span>
+                                <div>
+                                  <div className="font-bold text-lg text-white">{dimName}</div>
+                                  <div className="text-xs text-gray-400">{dimInfo.nameEn}</div>
+                                </div>
+                              </div>
+                              <div className="text-sm text-gray-300 mt-2">
+                                {dimInfo.description}
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="text-right ml-4">
+                            <div className="text-3xl font-bold" style={{ color: dimInfo.color }}>
+                              {score}
+                            </div>
+                            <div className="text-xs text-gray-400">/ 5.0</div>
+                          </div>
+                        </div>
+
+                        {/* 进度条 */}
+                        <div className="w-full bg-gray-700 rounded-full h-2.5 overflow-hidden">
+                          <div
+                            className="h-2.5 rounded-full transition-all duration-1000"
+                            style={{
+                              width: `${(scoreNum / 5) * 100}%`,
+                              backgroundColor: dimInfo.color,
+                              boxShadow: `0 0 10px ${dimInfo.color}`
+                            }}
+                          ></div>
+                        </div>
+
+                        {/* 水平标签 */}
+                        <div className="mt-2 text-xs text-gray-400 flex justify-between">
+                          <span>Low</span>
+                          <span>Medium</span>
+                          <span>High</span>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* 完整10维度评分 */}
+              <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 sm:p-8 mb-8 border border-gray-700 shadow-xl">
+                <h3 className="text-2xl font-bold text-white mb-6 flex items-center">
+                  <span className="mr-2">📈</span>
+                  Complete Dimension Assessment
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {Object.entries(results.dimensionAvgScores)
+                    .sort(([, a], [, b]) => parseFloat(b) - parseFloat(a))
+                    .map(([dimName, score]) => {
+                      const dimInfo = dimensions[dimName];
+                      const scoreNum = parseFloat(score);
+
+                      let level = '低';
+                      let levelColor = 'text-green-400';
+                      let levelBg = 'bg-green-900';
+
+                      if (scoreNum >= 4.0) {
+                        level = '很高';
+                        levelColor = 'text-red-400';
+                        levelBg = 'bg-red-900';
+                      } else if (scoreNum >= 3.5) {
+                        level = '高';
+                        levelColor = 'text-orange-400';
+                        levelBg = 'bg-orange-900';
+                      } else if (scoreNum >= 3.0) {
+                        level = '中等';
+                        levelColor = 'text-yellow-400';
+                        levelBg = 'bg-yellow-900';
+                      } else if (scoreNum >= 2.5) {
+                        level = '中低';
+                        levelColor = 'text-blue-400';
+                        levelBg = 'bg-blue-900';
+                      }
+
+                      return (
+                        <div
+                          key={dimName}
+                          className="bg-gray-800 bg-opacity-50 rounded-xl p-4 border border-gray-700 hover:border-gray-600 transition-all"
+                        >
+                          <div className="flex items-center justify-between mb-3">
+                            <div className="flex items-center space-x-2 flex-1">
+                              <span className="text-2xl">{dimInfo.icon}</span>
+                              <div className="flex-1">
+                                <div className="font-semibold text-white text-sm">
+                                  {dimName}
+                                </div>
+                                <div className="text-xs text-gray-400">
+                                  {dimInfo.nameEn}
+                                </div>
+                              </div>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                              <span
+                                className="font-bold text-xl"
+                                style={{ color: dimInfo.color }}
+                              >
+                                {score}
+                              </span>
+                              <span
+                                className={`text-xs px-2 py-1 rounded-full ${levelBg} ${levelColor} font-medium`}
+                              >
+                                {level}
+                              </span>
+                            </div>
+                          </div>
+
+                          <div className="w-full bg-gray-700 rounded-full h-1.5">
+                            <div
+                              className="h-1.5 rounded-full transition-all duration-1000"
+                              style={{
+                                width: `${(scoreNum / 5) * 100}%`,
+                                backgroundColor: dimInfo.color
+                              }}
+                            ></div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                </div>
+              </div>
+
+              {/* 详细解读 */}
+              <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 sm:p-8 mb-8 border border-purple-700 shadow-xl">
+                <h3 className="text-2xl font-bold text-white mb-6 flex items-center">
+                  <span className="mr-2">💡</span>
+                  Personalized Analysis Report
+                </h3>
+
+                <div className="space-y-6 text-gray-300 leading-relaxed">
+                  {/* 总体评价 */}
+                  <div className="bg-purple-900 bg-opacity-20 rounded-lg p-5 border border-purple-700">
+                    <h4 className="font-bold text-lg text-purple-300 mb-3">📌 Overall Assessment</h4>
+                    <p>
+                      Your dark personality D-score is <strong className="text-purple-400">{results.dScore}</strong>,
+                      placing you at the <strong className="text-purple-400">{results.percentile}%</strong> percentile.
+                      {parseFloat(results.dScore) >= 3.5 && (
+                        <span> You exhibit quite prominent dark personality traits, which can be advantageous in certain situations.</span>
+                      )}
+                      {parseFloat(results.dScore) >= 2.5 && parseFloat(results.dScore) < 3.5 && (
+                        <span> Your dark personality traits are at a moderate level, balancing strategic thinking with social adaptability.</span>
+                      )}
+                      {parseFloat(results.dScore) < 2.5 && (
+                        <span> Your dark personality traits are relatively low, tending toward more altruistic and empathetic behavior patterns.</span>
+                      )}
+                    </p>
+                  </div>
+
+                  {/* 优势分析 */}
+                  <div className="bg-blue-900 bg-opacity-20 rounded-lg p-5 border border-blue-700">
+                    <h4 className="font-bold text-lg text-blue-300 mb-3">✨ Trait Advantages</h4>
+                    <p>
+                      You perform prominently in <strong className="text-blue-400">{results.topDimensions[0][0]}</strong>,
+                      which means you{' '}
+                      {results.topDimensions[0][0] === 'Machiavellianism' && 'have excellent strategic thinking and negotiation skills, good at grasping situations'}
+                      {results.topDimensions[0][0] === 'Narcissism' && 'possess strong self-confidence and leadership charm, able to motivate others'}
+                      {results.topDimensions[0][0] === 'Psychopathy' && 'can remain calm under pressure and make rational decisions'}
+                      {results.topDimensions[0][0] === 'Sadism' && 'perform strongly in competitive environments, unafraid of conflict'}
+                      {results.topDimensions[0][0] === 'Egoism' && 'can clearly identify your interests and firmly defend them'}
+                      {results.topDimensions[0][0] === 'Entitlement' && 'have high self-expectations and motivation to pursue excellence'}
+                      {!['Machiavellianism', 'Narcissism', 'Psychopathy', 'Sadism', 'Egoism', 'Entitlement'].includes(results.topDimensions[0][0]) && 'have unique personality traits'}
+                      . These traits can be advantageous in fields such as{' '}
+                      {typeInfo.careers.slice(0, 2).join(', ')}.
+                    </p>
+                  </div>
+
+                  {/* 发展建议 */}
+                  <div className="bg-green-900 bg-opacity-20 rounded-lg p-5 border border-green-700">
+                    <h4 className="font-bold text-lg text-green-300 mb-3">🎯 Development Suggestions</h4>
+                    <ul className="space-y-2">
+                      <li className="flex items-start">
+                        <span className="text-green-400 mr-2 flex-shrink-0">•</span>
+                        <span>
+                          <strong>Leverage Strengths:</strong> In {typeInfo.careers[0] || 'suitable fields'},
+                          your {results.topDimensions[0][0]} traits can help you succeed.
+                        </span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-green-400 mr-2 flex-shrink-0">•</span>
+                        <span>
+                          <strong>Balanced Development:</strong> Maintain moral boundaries when pursuing goals,
+                          avoid excessive use of manipulation or cold means.
+                        </span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-green-400 mr-2 flex-shrink-0">•</span>
+                        <span>
+                          <strong>Self-Awareness:</strong> Regularly reflect on how your behavior affects others,
+                          cultivate more empathy and social responsibility.
+                        </span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-green-400 mr-2 flex-shrink-0">•</span>
+                        <span>
+                          <strong>Build Connections:</strong> Even with high dark traits,
+                          focus on building genuine interpersonal relationships, which is crucial for long-term development.
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* 注意事项 */}
+                  <div className="bg-red-900 bg-opacity-20 rounded-lg p-5 border border-red-700">
+                    <h4 className="font-bold text-lg text-red-300 mb-3">⚠️ Important Notes</h4>
+                    <ul className="space-y-2 text-sm">
+                      <li className="flex items-start">
+                        <span className="text-red-400 mr-2 flex-shrink-0">•</span>
+                        <span>Dark personality traits are not equivalent to mental illness or moral defects</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-red-400 mr-2 flex-shrink-0">•</span>
+                        <span>These traits can be advantageous in appropriate situations (e.g., business negotiations, crisis management)</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-red-400 mr-2 flex-shrink-0">•</span>
+                        <span>Excessive dark traits may affect interpersonal relationships and long-term development</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-red-400 mr-2 flex-shrink-0">•</span>
+                        <span>This assessment is for reference only, not a psychological diagnosis. Seek professional help if concerned</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* AI upgrade prompt - directly referencing original design */}
+              <div className="upgrade-card" style={{
+                background: 'linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 165, 0, 0.1) 100%)',
+                border: '2px solid rgba(255, 215, 0, 0.3)',
+                padding: '40px',
+                borderRadius: '25px',
+                textAlign: 'center',
+                margin: '40px 0',
+                position: 'relative',
+                overflow: 'hidden'
+              }}>
+                <div className="upgrade-badge" style={{
+                  display: 'inline-block',
+                  background: 'linear-gradient(135deg, #ffd700 0%, #ffed4e 100%)',
+                  color: '#000',
+                  padding: '8px 20px',
+                  borderRadius: '20px',
+                  fontSize: '14px',
+                  fontWeight: '700',
+                  marginBottom: '20px'
+                }}>
+                  ⭐ Upgrade to Get
+                </div>
+                <h2 className="upgrade-title" style={{
+                  fontSize: '28px',
+                  color: '#ffd700',
+                  marginBottom: '15px',
+                  fontWeight: '700'
+                }}>
+                  Unlock AI Deep Analysis Report
+                </h2>
+                <p className="upgrade-desc" style={{
+                  fontSize: '16px',
+                  color: '#ccc',
+                  marginBottom: '30px',
+                  lineHeight: '1.8'
+                }}>
+                  Want to get more precise personalized analysis and professional improvement plans?<br/>
+                  Upgrade to AI intelligent analysis version for deeper psychological insights
+                </p>
+                <div className="upgrade-features" style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  gap: '30px',
+                  flexWrap: 'wrap',
+                  marginBottom: '30px'
+                }}>
+                  <div className="upgrade-feature" style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '10px',
+                    color: '#ffd700',
+                    fontSize: '15px'
+                  }}>
+                    <span>✓</span>
+                    Deep psychological pattern analysis
+                  </div>
+                  <div className="upgrade-feature" style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '10px',
+                    color: '#ffd700',
+                    fontSize: '15px'
+                  }}>
+                    <span>✓</span>
+                    15+ customized improvement suggestions
+                  </div>
+                  <div className="upgrade-feature" style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '10px',
+                    color: '#ffd700',
+                    fontSize: '15px'
+                  }}>
+                    <span>✓</span>
+                    Professional detailed report (20+ pages)
+                  </div>
+                  <div className="upgrade-feature" style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '10px',
+                    color: '#ffd700',
+                    fontSize: '15px'
+                  }}>
+                    <span>✓</span>
+                    Relationship compatibility comparison analysis
+                  </div>
+                </div>
+                <button
+                  onClick={handlePremiumReport}
+                  className="btn btn-primary"
+                  style={{
+                    padding: '18px 40px',
+                    border: 'none',
+                    borderRadius: '30px',
+                    fontSize: '16px',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    transition: 'all 0.4s',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '10px',
+                    background: 'linear-gradient(135deg, #ffd700 0%, #ffed4e 100%)',
+                    color: '#000'
+                  }}
+                >
+                  <span>🚀</span>
+                  Upgrade Now to Unlock
+                </button>
+              </div>
+
+              {/* 操作按钮区域 */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+                <button
+                  onClick={() => {
+                    const text = generateShareText(results, typeInfo);
+                    navigator.clipboard.writeText(text).then(() => {
+                      alert('✅ Results copied to clipboard!');
+                    }).catch(() => {
+                      alert('❌ Copy failed, please copy manually');
+                    });
+                  }}
+                  className="w-full sm:w-auto bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold py-4 px-8 rounded-xl transition-all shadow-lg hover:shadow-green-500/50 flex items-center justify-center space-x-2"
+                >
+                  <span>📋</span>
+                  <span>Copy Results</span>
+                </button>
+
+                <button
+                  onClick={() => {
+                    setCurrentPage('intro');
+                    setCurrentQuestion(0);
+                    setAnswers({});
+                  }}
+                  className="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-4 px-8 rounded-xl transition-all shadow-lg hover:shadow-purple-500/50 flex items-center justify-center space-x-2"
+                >
+                  <span>🔄</span>
+                  <span>Retest</span>
+                </button>
+
+                <button
+                  onClick={() => window.print()}
+                  className="w-full sm:w-auto bg-gray-700 hover:bg-gray-600 text-white font-bold py-4 px-8 rounded-xl transition-all border border-gray-600 flex items-center justify-center space-x-2"
+                >
+                  <span>🖨️</span>
+                  <span>Print Report</span>
+                </button>
+              </div>
+
+              {/* 页脚信息 */}
+              <div className="text-center text-sm text-gray-500">
+                <p>🔒 Test results are automatically saved locally in your browser and not uploaded to servers</p>
+                <p className="mt-2 text-xs">
+                  Based on Dark Triad, Dark Factor psychology research · For self-awareness reference only
+                </p>
+              </div>
+            </div>
+          </div>
+        );
+      };
+
+      // 生成分享文本
+      const generateShareText = (results, typeInfo) => {
+        return `🌑 Dark Personality Assessment Results
+
+【Personality Type】${results.personalityType} ${typeInfo.icon}
+${typeInfo.description}
+
+【Key Data】
+• D-Score Total: ${results.dScore} / 5.0
+• Percentile: ${results.percentile}%
+
+【Top 3 Traits】
+${results.topDimensions.map(([dim, score], idx) =>
+          `${idx + 1}. ${dimensions[dim].icon} ${dim} - ${score} points`
+        ).join('\n')}
+
+【Suitable Fields】
+${typeInfo.careers.slice(0, 3).join(' · ')}
+
+---
+💡 Understand your dark side, explore your true self
+⚠️ Assessment results are for reference only, not a diagnosis
+
+#DarkPersonality #PsychologyTest #SelfAwareness`;
+      };
+
+      // 处理高级报告升级
+      const handlePremiumReport = () => {
+        const results = calculateResults();
+        const typeInfo = personalityTypes[results.personalityType] || {
+          icon: "🌑",
+          description: "Your personality traits are unique",
+          careers: ["Diverse Development"],
+          color: "from-gray-700 to-gray-900"
+        };
+
+        // Create premium report modal
+        const modal = document.createElement('div');
+        modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4';
+        modal.innerHTML = `
+          <div class="bg-white rounded-2xl p-6 max-w-md w-full max-h-[90vh] overflow-y-auto">
+            <div class="text-center mb-6">
+              <div class="text-4xl mb-4">🎯</div>
+              <h2 class="text-2xl font-bold mb-2">Unlock AI Deep Analysis Report</h2>
+              <p class="text-gray-600">Get professional insights about your dark personality traits</p>
+            </div>
+
+            <div class="space-y-4 mb-6">
+              <div class="flex items-center space-x-3">
+                <span class="text-yellow-500">✓</span>
+                <span class="text-sm">Deep psychological pattern analysis</span>
+              </div>
+              <div class="flex items-center space-x-3">
+                <span class="text-yellow-500">✓</span>
+                <span class="text-sm">15+ customized improvement suggestions</span>
+              </div>
+              <div class="flex items-center space-x-3">
+                <span class="text-yellow-500">✓</span>
+                <span class="text-sm">Professional detailed report (20+ pages)</span>
+              </div>
+              <div class="flex items-center space-x-3">
+                <span class="text-yellow-500">✓</span>
+                <span class="text-sm">Leadership & career compatibility analysis</span>
+              </div>
+            </div>
+
+            <div class="bg-gray-100 rounded-lg p-4 mb-6">
+              <p class="text-sm text-gray-700 mb-2">
+                <strong>Your Current Results:</strong>
+              </p>
+              <div class="text-lg font-bold text-purple-600">${results.personalityType}</div>
+              <div class="text-sm text-gray-600">D-Score: ${results.dScore} (${results.percentile}% percentile)</div>
+            </div>
+
+            <div class="text-center text-sm text-gray-500 mb-6">
+              <p>🔒 Premium analysis helps you better understand and utilize your personality advantages</p>
+            </div>
+
+            <div class="flex space-x-3">
+              <button onclick="this.closest('.fixed').remove()" class="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">
+                Maybe Later
+              </button>
+              <button onclick="window.open('#', '_blank')" class="flex-1 px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:from-purple-700 hover:to-pink-700">
+                Unlock Now
+              </button>
+            </div>
+          </div>
+        `;
+
+        document.body.appendChild(modal);
+
+        // Close modal when clicking outside
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            modal.remove();
+          }
+        });
+      };
+
+      // 图表初始化
+      useEffect(() => {
+        if (currentPage === 'result' && chartRef.current && typeof Chart !== 'undefined') {
+          const results = calculateResults();
+          const ctx = chartRef.current.getContext('2d');
+
+          // 销毁现有图表
+          const existingChart = Chart.getChart(ctx);
+          if (existingChart) {
+            existingChart.destroy();
+          }
+
+          const dimensionNames = Object.keys(dimensions);
+          const chartData = dimensionNames.map(dim =>
+            parseFloat(results.dimensionAvgScores[dim])
+          );
+
+          const colors = dimensionNames.map(dim => dimensions[dim].color);
+
+          try {
+            new Chart(ctx, {
+              type: 'radar',
+              data: {
+                labels: dimensionNames,
+                datasets: [{
+                  label: '您的得分',
+                  data: chartData,
+                  borderColor: 'rgba(139, 92, 246, 1)',
+                  backgroundColor: 'rgba(139, 92, 246, 0.2)',
+                  pointBackgroundColor: colors,
+                  pointBorderColor: '#fff',
+                  pointHoverBackgroundColor: '#fff',
+                  pointHoverBorderColor: colors,
+                  pointRadius: 6,
+                  pointHoverRadius: 8,
+                  borderWidth: 3
+                }]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                  r: {
+                    beginAtZero: true,
+                    min: 0,
+                    max: 5,
+                    ticks: {
+                      stepSize: 1,
+                      color: '#9ca3af',
+                      backdropColor: 'transparent',
+                      font: {
+                        size: 12
+                      }
+                    },
+                    pointLabels: {
+                      color: '#d1d5db',
+                      font: {
+                        size: 11,
+                        weight: 'bold'
+                      }
+                    },
+                    grid: {
+                      color: 'rgba(156, 163, 175, 0.2)'
+                    },
+                    angleLines: {
+                      color: 'rgba(156, 163, 175, 0.2)'
+                    }
+                  }
+                },
+                plugins: {
+                  legend: {
+                    display: false
+                  },
+                  tooltip: {
+                    callbacks: {
+                      label: function (context) {
+                        return `${context.label}: ${context.parsed.r.toFixed(2)} 分`;
+                      }
+                    }
+                  }
+                }
+              }
+            });
+          } catch (error) {
+            console.log('图表创建失败:', error);
+          }
+        }
+      }, [currentPage, answers]);
+
+      // 主渲染函数
+      switch (currentPage) {
+        case 'intro':
+          return renderIntro();
+        case 'test':
+          return renderTest();
+        case 'result':
+          return renderResult();
+        default:
+          return renderIntro();
+      }
+    };
+
+    // 渲染应用到页面
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<DarkPersonalityAssessment />);
+  </script>
+</body>
+
+</html>
